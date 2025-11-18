@@ -1,0 +1,11 @@
+uid,name,phone,regionName,areaName,distributorName,territoryName,points,routes
+RT-1001,Retailer CSV 1,01788880001,Dhaka,Banani,Distributor A,Banani-1,10,R1
+RT-1002,Retailer CSV 2,01788880002,Dhaka,Banani,Distributor A,Banani-1,15,R2
+RT-1003,Retailer CSV 3,01788880003,Dhaka,Gulshan,Distributor A,Gulshan-1,20,R3
+RT-1004,Retailer CSV 4,01788880004,Chittagong,Agrabad,Distributor B,Agrabad-1,5,R1
+RT-1005,Retailer CSV 5,01788880005,Chittagong,Pahartali,Distributor B,Pahartali-1,12,R2
+RT-1006,Retailer CSV 6,01788880006,Sylhet,Zindabazar,Distributor C,Zinda-1,7,R1
+RT-1007,Retailer CSV 7,01788880007,Rajshahi,Uttara,Distributor D,Uttara-1,9,R3
+RT-1008,Retailer CSV 8,01788880008,Bogura,Shatmatha,Distributor E,Shatmatha-1,18,R1
+RT-1009,Retailer CSV 9,01788880009,Khulna,Khalishpur,Distributor F,Khalishpur-1,25,R4
+RT-1010,Retailer CSV 10,01788880010,Barisal,Natun Bazar,Distributor G,Natun-1,30,R2

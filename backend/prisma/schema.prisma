@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Region {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  areas     Area[]
+  retailers Retailer[]
+}
+
+model Area {
+  id          Int         @id @default(autoincrement())
+  name        String
+  regionId    Int
+  region      Region      @relation(fields: [regionId], references: [id])
+  territories Territory[]
+  retailers   Retailer[]
+
+  @@unique([name, regionId])
+}
+
+model Distributor {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  retailers Retailer[]
+}
+
+model Territory {
+  id        Int        @id @default(autoincrement())
+  name      String
+  areaId    Int
+  area      Area       @relation(fields: [areaId], references: [id])
+  retailers Retailer[]
+
+  @@unique([name, areaId])
+}
+
+model Retailer {
+  id            Int      @id @default(autoincrement())
+  uid           String   @unique
+  name          String
+  phone         String   @db.VarChar(20)
+  regionId      Int?
+  areaId        Int?
+  distributorId Int?
+  territoryId   Int?
+  points        Int      @default(0)
+  routes        String?
+  notes         String?
+  updatedAt     DateTime @updatedAt
+
+  region      Region?      @relation(fields: [regionId], references: [id])
+  area        Area?        @relation(fields: [areaId], references: [id])
+  distributor Distributor? @relation(fields: [distributorId], references: [id])
+  territory   Territory?   @relation(fields: [territoryId], references: [id])
+
+  salesRepMappings SalesRepRetailer[]
+
+  @@index([name])
+  @@index([uid])
+  @@index([phone])
+}
+
+model SalesRep {
+  id               Int                @id @default(autoincrement())
+  username         String             @unique
+  name             String
+  phone            String?
+  passwordHash     String
+  role             Role               @default(SALES_REP)
+  retailerMappings SalesRepRetailer[]
+}
+
+model AdminUser {
+  id           Int    @id @default(autoincrement())
+  username     String @unique
+  name         String
+  passwordHash String
+  role         Role   @default(ADMIN)
+}
+
+model SalesRepRetailer {
+  salesRepId Int
+  retailerId Int
+  assignedAt DateTime @default(now())
+
+  salesRep SalesRep @relation(fields: [salesRepId], references: [id])
+  retailer Retailer @relation(fields: [retailerId], references: [id])
+
+  @@id([salesRepId, retailerId])
+  @@index([salesRepId])
+  @@index([retailerId])
+}
+
+enum Role {
+  ADMIN
+  SALES_REP
+}

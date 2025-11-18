@@ -1,0 +1,51 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.local
+.env.development
+.env.production
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+
+# Prisma
+.prisma/
+prisma/dev.db
+prisma/*.db-journal
+
+# Logs
+logs/
+*.log
+logfile.*
+
+# VSCode
+.vscode/
+
+# Docker
+docker-data/
+*.pid
+
+# PM2
+.pids
+*.seed
+*.pid.lock
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Postman
+*.postman_collection.json
+
+# Coverage
+coverage/
+.nyc_output/

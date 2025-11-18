@@ -1,0 +1,38 @@
+# Node modules (will be installed inside container)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+Dockerfile*
+
+# Env
+.env
+.env.local
+.env.production
+
+# Prisma local files
+.prisma
+prisma/dev.db
+prisma/*.db-journal
+
+# IDE
+.vscode
+.idea
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional
+logs/
+coverage/
+build/
+dist/
+tmp/
