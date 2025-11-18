@@ -51,7 +51,7 @@ This project is built using **Express.js**, **Prisma ORM**, **PostgreSQL**, **Re
 
 ## 1️⃣ Clone Repo
 ```bash
-git clone <repo-url>
+git clone https://github.com/ashiq611/Retailer-Sales-Representative-App.git
 cd backend
 ```
 
