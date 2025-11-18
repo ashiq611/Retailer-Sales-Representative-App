@@ -1,8 +1,5 @@
-To support 1M+ retailers, the system uses normalized data models and proper indexing
-(name, uid, phone, region, area, distributor, territory). Heavy read operations are
-cached using Redis with short TTL, reducing database pressure under high concurrency.  
+✅ Scaling Note
 
-Retailer list and detail APIs use Prisma transactions to avoid N+1 queries and return
-consistent pagination metadata. The app is stateless and suitable for horizontal scaling
-with load balancing. PostgreSQL can later be expanded with read replicas. CSV imports and
-bulk operations can be offloaded to worker queues to keep the API responsive.
+This backend is designed in a way that it can grow easily as the number of users and retailers increases. To keep the system fast, the most common database searches (like finding retailers by region, area, distributor, or UID) have proper indexes, so queries return results quickly even if the database gets very large. Redis caching is used for repeated requests — for example, retailer lists and details — so the backend doesn’t have to hit the database every time. This reduces load and makes responses faster.
+
+The app runs inside Docker, which makes it easy to scale by running multiple API servers behind a load balancer when traffic grows. Since the backend uses JWT authentication and is fully stateless, any request can be handled by any server. Heavy jobs like CSV imports can later be moved to background workers to keep the main API responsive. With these practices, the system can scale smoothly without slowing down as more retailers, sales reps, and admins use it.
