@@ -71,21 +71,27 @@ PORT=3000
 
 Start containers:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 Run Prisma migrations inside container:
 ```bash
-docker-compose exec api npx prisma migrate dev --name init
+docker compose exec api npx prisma migrate dev --name init
 ```
 
 Seed Database:
 ```bash
-docker-compose exec api node prisma/seed.js
+docker compose exec api node prisma/seed.js
 ```
 
 ## 📡 Running the Server
 ```bash
 npm run dev
+```
+
+
+## 📡 Running the Unit Testing
+```bash
+npm run test
 ```
 
 ## 📚 API Documentation (Overview)
