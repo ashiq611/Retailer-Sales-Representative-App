@@ -1,8 +1,17 @@
 import { createClient } from "redis";
 
-export const redis = createClient({
-  url: process.env.REDIS_URL || "redis://localhost:6379"
-});
+let redis;
 
-redis.on("connect", () => console.log("Redis connected"));
-redis.connect();
+if (process.env.NODE_ENV === "test") {
+  // mock redis for test env
+  redis = {
+    get: async () => null,
+    set: async () => "OK",
+    del: async () => 1
+  };
+} else {
+  redis = createClient({ url: "redis://redis:6379" });
+  redis.connect().catch(console.error);
+}
+
+export { redis };

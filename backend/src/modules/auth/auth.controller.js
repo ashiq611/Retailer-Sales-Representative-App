@@ -5,9 +5,13 @@ export const AuthController = {
     try {
       const { username, password } = req.body;
       const result = await AuthService.login(username, password);
-      res.json(result);
+      res.status(200).json({
+        success: true,
+        message: "Login successful",
+        token: result.token
+      });
     } catch (err) {
-      res.status(401).json({ message: err.message });
+      res.status(401).json({ success: false, message: err.message });
     }
   }
 };
